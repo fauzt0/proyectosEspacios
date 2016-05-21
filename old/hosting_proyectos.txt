@@ -1,0 +1,14 @@
+Ingresar Dominio:
+proyectosespacios.com
+
+Nombre de usuario de FTP: 
+proy7506 Cambiar
+
+
+
+contraseña:
+Pe29151710@
+
+
+server:
+50.62.69.1

@@ -1,0 +1,198 @@
+
+html { 
+  padding:0px;
+  margin:0px;
+}
+
+body {
+  background-color: #e1ddd9;
+  font-size: 14px;
+  font-family: Verdana, Arial, SunSans-Regular, Sans-Serif;
+  color:#564b47;  
+  text-align:center;
+	margin:0px;
+	padding:0px;
+  background:url(images/fondo.jpg);
+  background-attachment: fixed;
+}
+
+
+
+p,pre, h1 {
+margin:0px 10px 10px 10px;
+}
+
+h1 {
+font-size:14px;
+padding-top:10px;
+text-transform:uppercase;
+color: #564b47;
+background-color: transparent;
+	}
+
+
+
+a { 
+color: #ff66cc;
+font-size: 11px;
+background-color:transparent;
+text-decoration: none; 
+
+}
+ 
+pre { 
+color: #564b47;
+font-size: 11px;
+background-color:transparent;
+font-family: Courier, Monaco, Monospace;
+}
+
+
+/*  positioning-layers statisch und absolut */
+
+#box {
+width:870px;
+margin: 0px auto;
+padding:0px;
+text-align:left;
+position:relative;
+top:-32px;
+}
+
+#left {
+width:205px;
+padding:0px;
+float:left;
+background-color:#EFEFE9;
+/*  background:url(images/ficha1.jpg); */
+
+}
+
+
+#left b{
+font-size:14px;
+
+}
+
+#content {
+width:662px;
+padding:0px;
+float:left;
+background-color:#fff;
+overflow: auto;
+}
+
+#right {
+width:175px;
+padding:0px;
+float:left;
+background-color:#ff99cc;
+
+}
+
+#head {
+/* background-color:transparent; */ 
+  background:url(images/fondo_hed.png)
+}
+
+#head h1 {
+font-size: 14px;
+text-transform:uppercase;
+text-align: left;
+color: #564b47;
+background-color: #90897a;
+padding:5px 15px;
+margin:0px;
+}
+
+#head p {
+padding:10px;
+margin:0px;
+}
+
+#intro{
+ background-color:transparent;
+ font-size: 12px;
+ text-align: rigth;
+
+
+
+}
+
+#menu{
+color:white;
+font-weight: 600; 
+font-size:14px;
+
+}
+
+#menu a{
+color:white;
+font-weight: 600; 
+font-size:14px;
+text-decoration:underline;
+}
+
+
+
+#menu a:hover{
+text-decoration:none;
+font-weight: 600; 
+font-size:14px;
+
+}
+
+#fichas a:hover{
+position:relative;
+top:-18px;
+
+}
+
+
+
+
+#tagr2 h1 {
+font-size: 11px;
+text-align: left;
+color:white;
+background-color:#999999;
+position:relative;
+top:-175px;
+}
+
+
+#tagr3 h1{
+font-size: 11px;
+text-align: left;
+color:white;
+background-color:#99CCCC;
+position:relative;
+top:-175px;
+}
+
+#tagr4 h1{
+font-size: 11px;
+text-align: left;
+color:white;
+background-color:#A9BCF5;
+position:relative;
+top:-175px;
+}
+#tagr5 h1{
+font-size: 11px;
+text-align: left;
+color:white;
+background-color:#9F5F9F;
+position:relative;
+top:-175px;
+}
+
+
+#tagr6 h1{
+font-size: 11px;
+text-align: left;
+color:white;
+background-color:#D19275;
+position:relative;
+top:-175px;
+}
