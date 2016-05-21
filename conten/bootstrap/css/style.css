@@ -4,16 +4,38 @@ body {
   background-color: #e1ddd9;
   font-size: 14px;
   font-family: Verdana, Arial, SunSans-Regular, Sans-Serif;
-	margin:0px;
-	padding:0px;
+	
   background:url(../../img/fondo.jpg);
   background-attachment: fixed;
 }
 
+#constructor{
+  background-color: #fff;
+}
+
+ .title{
+  color:#58ACFA;
+  font-weight: bolder;
+  font-size: 30px;
+}
+
+.sub-title{
+ font-weight: bolder; 
+ margin-left: 22px;
+}
+
+.listado{
+  margin-left:22px;
+}
+
+.listado2{
+  margin-left:22px;
+  line-height: 30px;
+}
 
 #top-pane{
-  /*background:url(../../img/fondo_hed.png);*/
-  min-height: 125px;
+  background:url(../../img/fondo_hed.png);
+  min-height: 90px;
 }
 
 #down-top-pane{
@@ -36,3 +58,133 @@ body {
 }
 
 
+#paner1{
+  margin-top: 28px;
+}
+
+#paner2{
+  margin-top: 28px;
+}
+
+#sliter{
+  margin-top:-18px;
+  padding-top: 0;
+  
+}
+
+#espejo{
+ margin-top:0px;
+  padding-top: 0;
+  border: 1px solid red; 
+
+}
+
+.sliterimg{
+  width: 100%;
+  max-height: 200px;
+}
+
+
+#asider{
+  background-color:#EFEFE9;
+}
+
+
+p,pre, h1 {
+
+}
+
+h3 {
+
+text-transform:uppercase;
+color: #564b47;
+background-color: transparent;
+  }
+
+
+
+a { 
+color: #ff66cc;
+font-size: 11px;
+background-color:transparent;
+text-decoration: none; 
+
+}
+ 
+pre { 
+color: #564b47;
+font-size: 11px;
+background-color:transparent;
+font-family: Courier, Monaco, Monospace;
+}
+
+#fichas a:hover{
+position:relative;
+top:-18px;
+
+}
+
+#ficheros{
+  border: 1px solid red;
+  position: relative;
+  overflow: hidden;
+  max-height: 165px;
+}
+
+
+
+
+
+.tagr{    
+    min-height: 60px;
+    min-width: 220px;
+    max-width: 220px;
+    text-transform:uppercase;
+    font-size: 12px;
+    margin-right: 34px;
+    margin-bottom: 15px;
+    margin-left: 0;
+    font-weight: bold;  
+}
+
+#tagr2  {  
+  position: relative;
+  float: left;  
+  text-align: left;
+  color:white;
+  background-color:#999999;  
+}
+
+#tagr3 {
+  position: relative;
+  float: left;  
+  text-align: left;
+  color:white;
+  background-color:#999999;
+  
+}
+
+#tagr4 {
+  position: relative;
+  float: left;  
+  text-align: left;
+  color:white;
+  background-color:#A9BCF5;
+}
+
+#tagr5 {
+  position: relative;
+  float: left;
+  text-align: left;
+  color:white;
+  background-color:#9F5F9F;
+}
+
+
+#tagr6 {
+  position: relative;
+  float: left;
+  text-align: left;
+  color:white;  
+  background-color:#D19275;
+}
