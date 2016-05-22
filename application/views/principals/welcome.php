@@ -1,7 +1,7 @@
 
 <!-- constructor -->
       <section>
-        <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9" id="constructor">
+        <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9" id="constructor">
             <div id="contenido">
               <h2>Bienvenidos</h2><br>
   
