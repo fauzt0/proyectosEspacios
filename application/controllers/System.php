@@ -137,6 +137,70 @@ class System extends CI_Controller {
 	  	}
 
 	}
+/*Gestion de inbox*/
+
+	public function sendmsg(){
+		$logged_in = $this->session->userdata('logged_in');
+		$permiso = $this->session->userdata('level');		  		
+		if( $logged_in== TRUE AND($permiso=="1"))
+	  	{ 
+	  		$usuario = $_GET['usuario'];//usuario
+	  		$mensaje = $_GET['mensaje'];//mensaje
+	  		$envia	 = $this->session->userdata('username');//	  		
+	  		if($mensaje!="" && $usuario!="" && $envia!="" ){//si van todos los campos llenos
+	  			$this->load->model('herramientas');
+	  			$data['usuario'] = $usuario;
+	  			$data['mensaje'] = $mensaje;
+	  			$data['envia'] 	 = $envia;
+
+	  			$result = $this->herramientas->sendmsg($data);
+	  			echo $result;
+	  		}else{
+	  			echo -1;
+	  		}
+	  	}
+	}
+
+	public function loadMessages(){
+		$logged_in = $this->session->userdata('logged_in');		
+		if( $logged_in== TRUE)
+	  	{ 
+	  		$username = $this->session->userdata('username');//nombre de usuario
+	  		$this->load->model('herramientas');
+	  		$mensajes = $this->herramientas->loadMessages($username);//array de mensajes	  			  		
+	  		
+		
+	  		if($mensajes[0] > 0){//si tenemos mensajes
+	  			$array[0] =1;//existe mensaje?
+	  			$i=1;	  			
+	  			
+	  			foreach ($mensajes[1]->result() as $row) {
+	  				$sender 		= $row->envia;	  							
+	  				$mensajes		= $row->mensaje;
+	  				$array[$i]		= $sender.":".$mensajes;
+	  				$i++;	  				
+	  			
+	  			}
+	  			
+	  		}else{
+				$array[0] =0;//no existe mensaje				
+	  		}
+	  		echo json_encode($array);
+
+	  	}
+	}
+
+
+	public function clinbox(){
+		$logged_in = $this->session->userdata('logged_in');		
+		if( $logged_in== TRUE)
+	  	{ 
+	  		$username = $this->session->userdata('username');//nombre de usuario
+	  		$this->load->model('herramientas');
+	  		$result =$this->herramientas->clinbox($username);
+	  		echo $result;
+	  	}
+	}
 
 /*Gestion de usuarios*/
 

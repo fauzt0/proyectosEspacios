@@ -84,19 +84,86 @@ function deluser(usuario){//elimina un usuario
 	 }else{alert("No se elimino al usuario");}
 }
 
-
 function msg(usuario){
+	$("#mensaje2").empty();
 	$("#recipient-name").val("");//eliminamos cualquier valor
 	$("#recipient-name").val(usuario);
 }
 
 function sendmsg(){
-	var usuario = $("#recipient-name").val();//mensaje destino
-	$.get('http://localhost/proyectos/proyectosEspacios/index.php/system/deluser',
-		{
 
+	var usuario = $("#recipient-name").val();//mensaje destino
+	var	mensaje = $("#message-text").val();
+	if(usuario==""){
+			$("#mensaje2").empty();
+			$("#mensaje2").append('<div class="alert alert-warning" role="alert">No dejar espacios en blanco</div>');							 
+	}else{		
+		$.get('http://localhost/proyectos/proyectosEspacios/index.php/system/sendmsg',
+			{
+				'usuario':usuario,
+				'mensaje':mensaje
+			},
+			function(result){
+				switch(result){
+					case '-1':
+						$("#mensaje2").empty();
+						$("#mensaje2").append('<div class="alert alert-warning" role="alert">No dejar espacios en blanco</div>');							 
+					break;
+	
+					case '0':
+						$("#mensaje2").empty();
+						$("#mensaje2").append('<div class="alert alert-danger" role="alert">No se pudo entregar el mensaje. Intente nuevamente más tarde</div>');							 
+					break;
+	
+					case '1':
+						$("#mensaje2").empty();
+						$("#mensaje2").append('<div class="alert alert-success" role="alert">Mensaje entregado exitosamente</div>');							 
+						$("#msgarea")[0].reset();
+					break;
+	
+					default:
+					$("#mensaje2").empty();
+					$("#mensaje2").append('<div class="alert alert-danger" role="alert">¡Error:'+result+'. Contacte al administrador</div>');							 
+					break;
+				}
+			});
+	}
+}
+
+function loadMessages(){
+	/*carga mensajes*/
+	$.post('http://localhost/proyectos/proyectosEspacios/index.php/system/loadMessages',
+		{},
+		function(result){
+				
+			
+			var aray1 = JSON.parse(result);
+			if(aray1[0]==1){//desplegamos mensajes
+				var cant = aray1.length -1;
+				var i=0;
+				for(i=1; i<=cant;i++){
+					$("#inbox").append(aray1[i]);
+					$("#inbox").append("<br>________<br>");
+				}
+				$("#inbox").append('<br><input type="button" value="Vaciar" class="btn btn-warning" onclick="clinbox()" style="float:right;"> ');
+
+			}else{//notificaciones vacias
+				$("#inbox").html("<p>Sin Mensajes</p>");
+			}
+
+		});
+}
+
+function clinbox(){
+	$.post('http://localhost/proyectos/proyectosEspacios/index.php/system/clinbox',
+		{
 		},
 		function(result){
-
+			if(result==1){
+				$("#inbox").empty();	
+			}else{
+				alert("No se pudieron eliminar los mensajes");
+			}
+			
 		});
 }

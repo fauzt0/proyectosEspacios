@@ -75,7 +75,7 @@ body {
 #espejo{
  margin-top:0px;
   padding-top: 0;
-  border: 1px solid red; 
+  
 
 }
 
@@ -196,4 +196,8 @@ top:-18px;
   max-height: 270px;
   overflow: auto;
 
+}
+
+#inbox{
+  font-size: 12px;
 }

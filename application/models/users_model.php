@@ -16,18 +16,18 @@ class users_model extends CI_Model {
     	$result=$this->pactar($val);//array de usaer and pass
     	if($result['existe']==1)//si existe el usuario combrobamos pass
     	{
-    		if($result['pass']==$contraseña)
-    		{
+        	if($result['pass']==$contraseña){
     			$conected =1;//correcto
-    		}
-    		else{$conected=-1;}//incorrecto
+    		}else{
+                $conected=-1;
+            }//incorrecto
     	}
     	else
     	{
 			$conected =0;//no existe el usuario
     	}
     	return $conected;
-     }
+    }
 
     private function pactar($val)//handshake base de datos
     {
@@ -123,8 +123,11 @@ class users_model extends CI_Model {
         return $data;
     }
 
+
+
     public function deluser($usuario){
         //eliminamos al usuario de la base
+        $this->db->delete('mensajes', array('usuario' => $usuario)); 
         $this->db->delete('usuarios', array('usuario' => $usuario)); 
         $result = $this->db->affected_rows();
         if($result>0){
