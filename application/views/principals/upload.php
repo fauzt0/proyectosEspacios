@@ -4,29 +4,29 @@
               <h2 class="title">Carga de archivos:</h2><br>  
               <div class="row">
 
-              		<form>
+              		<form  id="formulario_imgs"  enctype="multipart/form-data" class="formulario">
   <div class="form-group">
     <label for="titulover">Título de versión</label>
-    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="EJ: Plano Indutrial ver1">
+    <input type="text" class="form-control" id="pseudo" name="pseudo" placeholder="EJ:plano_indutrial_ver1">
   </div>
 
   <div class="form-group">
-    <label for="File">File input</label>
-    <input type="file" id="exampleInputFile">
+    <label for="File">Archivo</label>
+    <input type="file" id="imagen" name="archivo">
     <p class="help-block">Archivos permitidos: .rar, .zip, .png, .jpg, dwg .</p>
   </div>
 
 <div class="form-group">
-    <label for="Autor">Autor:</label>
-    <input type="text" disabled="true" class="form-control" id="autor" >
+    
+    <input type="hidden"  class="form-control" id="ext" name="ext">
   </div>
 
   <div class="form-group">
-    <label for="date">Fecha:</label>
+    
     <?php
       date_default_timezone_set('America/Mexico_City');
       $fecha=date("Y/m/d");
-      echo'<input type="text" disabled="true" class="form-control" id="fecha" placeholder="EJ: Plano Indutrial ver1" value="'.$fecha.'">';
+      echo'<input type="hidden"   class="form-control" name="fecha" id="fecha" placeholder="EJ: Plano Indutrial ver1" value="'.$fecha.'">';
     ?>
     
     
@@ -34,11 +34,11 @@
 
   <div class="form-group">
     <label for="Desc">Descripción de versión</label>
-    <textarea class="form-control" style="width:80%;" rows="3" placeholder="EJ: Cambios 1 planta baja"></textarea>    
+    <textarea id="desc" name="desc" class="form-control" style="width:80%;" rows="3" placeholder="EJ: Cambios 1 planta baja"></textarea>    
   </div>
 
-
-  <button type="submit" class="btn btn-primary" disabled="true">Subir Archivo</button>
+<div id="mensaje"></div>
+  <button type="button" class="btn btn-primary" disabled="true" id="uploader">Subir Archivo</button>
 </form>
                   
                   <br>

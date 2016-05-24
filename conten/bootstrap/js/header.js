@@ -1,3 +1,102 @@
+$(document).ready(function()
+ { 
+ 	
+ 	var fileExtension = "";
+ 	//función que observa los cambios del campo file y obtiene información
+    $(':file').change(function()
+    {
+    	
+        //obtenemos un array con los datos del archivo
+        var file = $("#imagen")[0].files[0];
+        //obtenemos el nombre del archivo
+        var fileName = file.name;
+		var last_img = fileName;
+        //obtenemos la extensión del archivo
+        var fileExtension = fileName.substring(fileName.lastIndexOf('.') + 1);
+        //obtenemos el tamaño del archivo
+        var fileSize = file.size;
+        //obtenemos el tipo de archivo image/png ejemplo
+        var fileType = file.type;
+        //mensaje con la información del archivo	
+	if(fileExtension== "jpg" || fileExtension== "png" || fileExtension== "gif" || fileExtension== "JPG" || fileExtension== "PNG" || fileExtension== "GIF" || fileExtension== "rar" || fileExtension== "zip" || fileExtension== "dwg"   )  
+	{	
+	
+	   $("#uploader").attr("disabled",false);	   
+	   $("#mensaje").empty();
+	   $("#mensaje").append('<div class="alert alert-success" role="alert">Archivo valido</div>');		
+	   $("#ext").val(fileExtension);             	  	  	  
+	}
+	 else{ 
+	   
+	  $("#mensaje").empty();
+	  $("#mensaje").append('<div class="alert alert-danger" role="alert">Archivo no valido: .'+fileExtension+'</div>');		
+	  
+	  $("#uploader").attr("disabled",true);
+	  
+	 }
+    });
+    /**/
+
+    $('#uploader').click(function(){
+        //información del formulario
+        var formData = new FormData($(".formulario")[0]);
+        var message = "";
+	
+        //hacemos la petición ajax  
+	  $.ajax({
+	      url: 'http://localhost/proyectos/proyectosEspacios/index.php/system/getupload',    
+	      type: 'POST',
+	      // Form data
+	      //datos del formulario
+	      data: formData,
+	      //necesario para subir archivos via ajax
+	      cache: false,
+	      contentType: false,
+	      processData: false,
+	      //mientras enviamos el archivo
+	      beforeSend: function()
+	      {
+		  $("mensaje").empty();
+		  message = $("<span class='before'>Subiendo la imagen, por favor espere...</span>");
+		  $("#mensaje").append(message);
+	      },
+	      //una vez finalizado correctamente
+	      success: function(data)
+	      {
+		 		
+		 	if(data==1)
+		 	{
+
+			 		location.reload(true);
+
+		  	}else
+		  	{
+		  		$("#mensaje").empty();
+		  		message = $("<span class='success'>No se pudo agregar la imagen. Error:</span>");	   		  
+		  		$("#mensaje").append(message+data);		  
+		  	}    
+		    
+	      },
+            //si ha ocurrido un error
+	      error: function()
+	      {
+                message = $("<span class='error'>Ha ocurrido un error.</span>");
+           		$("#mensaje").empty();
+           		$("#mensaje").append(message);		  
+	      }
+        });
+    });
+
+
+ 
+
+//end of listener
+ });
+
+
+
+
+
 function newUser(){
 	/*verificamos todos los campos minimos*/
 	var nombre 		= $("#nombre").val();

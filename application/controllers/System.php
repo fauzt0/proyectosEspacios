@@ -115,9 +115,38 @@ class System extends CI_Controller {
 	   	$this->starter();//si se inicia sesion, se manda a la página principal
 	   }					
 	}
-/*funciones del sistema*/
+/*funciones del sistema carga*/
 
-	public function upload(){
+	public function display(){//despliegue de archivos
+		$logged_in = $this->session->userdata('logged_in');
+		if( $logged_in== TRUE )
+	  	{ 
+	  		$permiso = $this->session->userdata('level');	
+	  		$username = $this->session->userdata('username');	  		
+	  		//cargamos vistas
+	  		$data['username'] = $username;
+	  		$data['permiso']  = $permiso;
+	  		//cargamos los archivos
+	  		$axs['showt']=0;
+	  		$this->load->model('herramientas');
+	  		$result = $this->herramientas->history($axs);//array de resultados
+	  		$data['results'] = $result;
+
+	  		
+
+	  		$this->load->view('headers/header3',$data);
+			$this->load->view('asiders/asider3');
+			$this->load->view('principals/display');//pasamos toda la información mediante ph
+			$this->load->view('footers/footer');
+	  	}else{
+	  		$this->index();	
+	  	}
+	}
+
+
+
+
+	public function upload(){//carga de archivos
 		$logged_in = $this->session->userdata('logged_in');
 		if( $logged_in== TRUE )
 	  	{ 
@@ -135,6 +164,46 @@ class System extends CI_Controller {
 	  	}else{
 	  		$this->index();	
 	  	}
+
+	}
+
+
+		public function getupload(){
+		$logged_in = $this->session->userdata('logged_in');
+		if( $logged_in== TRUE )
+	  	{ 
+		
+			//valores que se obtienen mendiante ajax
+			$file = $_FILES['archivo']['name'];//obtenemos el archivo a subir(nombre)
+			$error = $_FILES['archivo']['error'];//error			
+	    	$params['pseudo']=$_POST['pseudo'];//pseudo del archivo
+	    	$params['descripcion']=$_POST['desc'];//descripcion
+    		$params['ext']= $_POST['ext'];//extension de la imagen
+    		$params['fecha']= $_POST['fecha'];//fecha de la imagen
+
+    		//valores que se obtienen mediante scripts
+    			//autor
+    		$username = $this->session->userdata('username');	  		
+    		$this->load->model('herramientas');
+    		$params['autor'] = $this->herramientas->getid($username);
+    			//version/*veremos que no se repita el nombre del pseudo*/
+    		$al = $params['pseudo'];
+    		$params['version'] = $this->herramientas->verision($al);
+    		$nFile=$params['pseudo'].$params['version'].".".$params['ext']; 
+    		$params['bipseudo'] = $params['pseudo'];
+    		$params['ruta'] = "http://proyectosespacios.com/conten/files/".$nFile;//ruta absoluta   		
+    		$params['nombre'] = $file;
+    		$params['pseudo']= $params['pseudo'].$params['version'];
+    		if ($file && move_uploaded_file($_FILES['archivo']['tmp_name'],"../proyectosEspacios/conten/files/".$nFile))
+				{
+					$result = $this->herramientas->upload($params);
+					echo $result;
+		  		}
+		  		else{echo 0;}		  			  
+		  		
+
+
+		}
 
 	}
 /*Gestion de inbox*/
